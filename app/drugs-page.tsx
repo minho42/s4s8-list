@@ -21,21 +21,24 @@ function DrugList({ drugs, title, source }: { drugs: S4[] | S8[]; title: string;
       </h2>
 
       <article className="leading-7">
-        {drugs.map((drug) => (
-          <div key={drug.name}>
-            <span>{drug.name}</span>
+        {drugs.map((drug) => {
+          const typedDrug = drug as S4 | S8
+          return (
+            <div key={typedDrug.name}>
+              <span>{typedDrug.name}</span>
 
-            {drug.brandNames?.length > 0 && (
-              <span className="ml-1">
-                (
-                {drug.brandNames.map((brandName, index) => (
-                  <span key={brandName}>{(index ? ", " : "") + brandName}</span>
-                ))}
-                )
-              </span>
-            )}
-          </div>
-        ))}
+              {"brandNames" in typedDrug && typedDrug.brandNames.length > 0 && (
+                <span className="ml-1">
+                  (
+                  {typedDrug.brandNames.map((brandName, index) => (
+                    <span key={brandName}>{(index ? ", " : "") + brandName}</span>
+                  ))}
+                  )
+                </span>
+              )}
+            </div>
+          )
+        })}
       </article>
     </section>
   )
