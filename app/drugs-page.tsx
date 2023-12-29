@@ -22,14 +22,14 @@ function DrugList({ drugs, title, source }: { drugs: S4[] | S8[]; title: string;
 
       <article className="leading-7">
         {drugs.map((drug) => (
-          <div>
+          <div key={drug.name}>
             <span>{drug.name}</span>
 
             {drug.brandNames?.length > 0 && (
               <span className="ml-1">
                 (
-                {drug.brandNames.map((brandName) => (
-                  <span>{brandName}, </span>
+                {drug.brandNames.map((brandName, index) => (
+                  <span key={brandName}>{(index ? ", " : "") + brandName}</span>
                 ))}
                 )
               </span>
