@@ -9,7 +9,7 @@ type S8 = {
 function DrugList({ drugs, title, source }: { drugs: S4[] | S8[]; title: string; source: string }) {
   return (
     <section>
-      <h2 className="text-center space-x-1 py-3 text-xl sticky top-0 bg-white border-b border-dashed border-gray-400">
+      <h2 className="text-center space-x-1 py-3 text-2xl sticky top-0 bg-white border-b border-dashed border-gray-400">
         <span className="font-semibold">{title}</span>
         <span>
           (
@@ -20,15 +20,15 @@ function DrugList({ drugs, title, source }: { drugs: S4[] | S8[]; title: string;
         </span>
       </h2>
 
-      <article className="leading-7">
+      <article className="leading-8">
         {drugs.map((drug) => {
           const typedDrug = drug as S4 | S8
           return (
             <div key={typedDrug.name}>
-              <span>{typedDrug.name}</span>
+              <span className="font-medium">{typedDrug.name}</span>
 
               {"brandNames" in typedDrug && typedDrug.brandNames.length > 0 && (
-                <span className="ml-1">
+                <span className="ml-1 text-neutral-500">
                   (
                   {typedDrug.brandNames.map((brandName, index) => (
                     <span key={brandName}>{(index ? ", " : "") + brandName}</span>
